@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 
 const app = express()
 
+dotenv.config()
+
 app.post('/', (req, res) => {
     res.send('Yipee! backend is working fine')
 })
