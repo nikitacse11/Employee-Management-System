@@ -16,4 +16,4 @@ const schema = new Schema({
     },
 })
 
-export const Admin = mongoose.model('admins', schema)
+export const Admin = mongoose.model('Admin', schema)

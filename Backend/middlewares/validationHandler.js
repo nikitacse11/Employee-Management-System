@@ -4,14 +4,13 @@ const validationHandler = (req, res, next) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         const formattedErrors = errors.array().map( (error) => {
-            console.log(error)
             return {
                 type: 'field',
-                value: req.body[error.param] ?? null,
+                value: req.body?.[error.param] ?? null,
                 msg: error.msg,
                 path: error.param,
                 // location: 'body',
-                location: error.location,
+                location: error.location || 'body',
             }
         })
         const allErrors = formattedErrors.map(

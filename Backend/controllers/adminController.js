@@ -12,7 +12,6 @@ const createAdmin = async (req, res) => {
         // console.log(req.body)
         let data = req.body
         let password = data.password
-
         const passwordSalt = await bcrypt.genSalt()
 
         let hashedPassword = await bcrypt.hash(password, passwordSalt)
