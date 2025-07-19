@@ -25,4 +25,9 @@ const createAdminSchema = [
     body('password').notEmpty().withMessage('Password is required field'),
 ]
 
-export { createAdminSchema };
+const loginSchema = [
+    body('email').notEmpty().withMessage('Email is required field'),
+    body('password').notEmpty().withMessage('Password is required field'),
+]
+
+export { createAdminSchema, loginSchema };

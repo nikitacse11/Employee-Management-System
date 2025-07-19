@@ -1,7 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import  adminRouter  from './routes/adminRoutes.js'
 import dbConnection from './db/db.js'
+import adminRouter from './routes/adminRoutes.js'
+import authUserRouter from './routes/authUserRoutes.js'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.post('/', (req, res) => {
 
 app.use(express.json());
 app.use('/admin',adminRouter)
+app.use('/auth',authUserRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`App is running on ${process.env.PORT}`)
