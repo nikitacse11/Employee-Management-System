@@ -1,6 +1,13 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SignIn from './components/signIn/signIn.jsx';
 function App() {
   return (
-    <h1>Hello</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignIn/>} />
+        <Route path="/signin" element={<SignIn/>} />
+        </Routes>
+    </BrowserRouter>
   );
 }
 
