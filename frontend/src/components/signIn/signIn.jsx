@@ -1,6 +1,26 @@
 import './signIn.css';
 import { useFormik } from 'formik';
+import { loginSchema } from '../../schemas/loginSchema';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton'
 function SignIn () {
+    const initialState = {
+        email: '',
+        password: '',
+    }
+    const formik = useFormik({
+        initialValues: initialState,
+        validationSchema: loginSchema,
+        // onSubmit: async function (values, action) {
+        //     // console.log("Value:", value);
+        //     if (value == 1) {
+        //         await loginAdminHandler(values)
+        //     } else if (value == 2) {
+        //         await loginUserHandler(values)
+        //     }
+        //     action.resetForm()
+        // },
+    })
     return (
         <>
         <div className="signin_main_contain">
@@ -15,55 +35,49 @@ function SignIn () {
                         Enter your credentials to access your account
                     </p>
                     <div className="mb-4 d-flex  justify-content-center align-items-center border-none">
-                        {/* <ToggleButtonGroup
+                         <ToggleButtonGroup
                             type="radio"
                             name="options"
-                            value={value}
-                            className="border-0"
-                            onChange={handleChange}
-                        > */}
-                            {/* <ToggleButton
+                            className="border-0" 
+                        > 
+                            <ToggleButton
                                 id="tbg-btn-1"
                                 value={1}
-                                className={`toggle-button ${
-                                    value === 1 ? 'active' : ''
-                                }`}
+                                // className={`toggle-button ${
+                                //     value === 1 ? 'active' : ''
+                                // }`}
                                 // onClick={() => setActiveValue(3)}
                             >
                                 Admin Login
-                            </ToggleButton> */}
-                            {/* <ToggleButton
+                            </ToggleButton>
+                            <ToggleButton
                                 id="tbg-btn-2"
                                 value={2}
-                                className={`toggle-button ${
-                                    value === 2 ? 'active' : ''
-                                }`}
+                                // className={`toggle-button ${
+                                //     value === 2 ? 'active' : ''
+                                // }`}
                                 // onClick={() => setActiveValue(4)}
                             >
                                 User Login
-                            </ToggleButton> */}
-                        {/* </ToggleButtonGroup> */}
+                            </ToggleButton>
+                         </ToggleButtonGroup>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="email" className="mb-2 input_label">
+                        <label htmlFor="email" className="mb-2 signin_input_label">
                             Email
                         </label>
                         <input
                             type="email"
                             name="email"
                             placeholder="Enter your email"
-                            // value={formik.values.email}
+                            value={formik.values.email}
                             // onChange={formik.handleChange}
                             // onBlur={formik.handleBlur}
-                            // className={`form-control ${
-                            //     formik.errors.email && formik.touched.email
-                            //         ? 'border border-danger '
-                            //         : ''
-                            // }`}
+                            className="form-control"
                         />
-                        {/* {formik.errors.email && formik.touched.email ? (
+                        {formik.errors.email && formik.touched.email ? (
                             <p className="form_error">{formik.errors.email}</p>
-                        ) : null} */}
+                        ) : null}
                     </div>
                     <div className="mb-3">
                         <label
@@ -76,21 +90,17 @@ function SignIn () {
                             type="password"
                             name="password"
                             placeholder="Enter your password"
-                            // value={formik.values.password}
-                            // onChange={formik.handleChange}
+                            value={formik.values.password}
+                            onChange={formik.handleChange}
                             // onBlur={formik.handleBlur}
-                            // className={`form-control ${
-                            //     formik.errors.password &&
-                            //     formik.touched.password
-                            //         ? 'border border-danger '
-                            //         : ''
+                            className="form-control border border-danger"
                             // }`}
                         />
-                        {/* {formik.errors.password && formik.touched.password ? (
+                        {formik.errors.password && formik.touched.password ? (
                             <p className="form_error">
                                 {formik.errors.password}
                             </p>
-                        ) : null} */}
+                        ) : null}
                     </div>
                     <button className=" signin mb-3">SIGN IN</button>
                     <div className="text-center">
