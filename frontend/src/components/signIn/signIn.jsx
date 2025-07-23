@@ -3,23 +3,50 @@ import { useFormik } from 'formik';
 import { loginSchema } from '../../schemas/loginSchema';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import { loginAdmin } from '../../api/loginApi'
+import { useState } from 'react';
+import { toast } from 'react-toastify'
+import {useNavigate} from 'react-router-dom'
 function SignIn () {
+    const [value, setValue] = useState(1)
+    const navigate = useNavigate()
+    const handleChange = (val) => {
+        setValue(val)
+    }
     const initialState = {
         email: '',
         password: '',
     }
+    const loginAdminHandler = async (loginData) => {
+        const res = await loginAdmin(loginData)
+        if (res && res.data.responseCode === 200) {
+            toast.success(res.data.resMessage)
+            // console.log(res.data.data)
+            // dispatch(login(res.data.data))
+            navigate('/admin-dashboard')
+        } else if (res && res.data.responseCode === 400) {
+            // console.log("Error 400");
+            // console.log("Response Data", res.data);
+            toast.error(res.data.errMessage)
+        } else {
+            toast.error('Something Went Wrong.....')
+            // console.log("Error", error);
+        }
+    }
+
     const formik = useFormik({
         initialValues: initialState,
         validationSchema: loginSchema,
-        // onSubmit: async function (values, action) {
-        //     // console.log("Value:", value);
-        //     if (value == 1) {
-        //         await loginAdminHandler(values)
-        //     } else if (value == 2) {
+        onSubmit: async function (values, action) {
+            // console.log("Value:", value);
+            if (value == 1) {
+                await loginAdminHandler(values)
+            } 
+            // else if (value == 2) {
         //         await loginUserHandler(values)
         //     }
         //     action.resetForm()
-        // },
+         },
     })
     return (
         <>
@@ -43,20 +70,19 @@ function SignIn () {
                             <ToggleButton
                                 id="tbg-btn-1"
                                 value={1}
-                                // className={`toggle-button ${
-                                //     value === 1 ? 'active' : ''
-                                // }`}
-                                // onClick={() => setActiveValue(3)}
+                                className={`toggle-button ${
+                                    value === 1 ? 'active' : ''
+                                }`}
+                                
                             >
                                 Admin Login
                             </ToggleButton>
                             <ToggleButton
                                 id="tbg-btn-2"
                                 value={2}
-                                // className={`toggle-button ${
-                                //     value === 2 ? 'active' : ''
-                                // }`}
-                                // onClick={() => setActiveValue(4)}
+                                className={`toggle-button ${
+                                    value === 2 ? 'active' : ''
+                                }`}
                             >
                                 User Login
                             </ToggleButton>
