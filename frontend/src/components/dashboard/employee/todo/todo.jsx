@@ -1,5 +1,4 @@
-import React from 'react'
-// import clipboard from '../../../../assets/images/clipboard.png'
+import clipboard from '../../../../assets/images/clipboard.png'
 
 function Todo() {
   return (
