@@ -4,7 +4,7 @@ import {
     apiResponsePagination,
 } from '../middlewares/apiResponse.js'
 import bcrypt from 'bcrypt'
-import {createNewEmployee, getAllEmployees, removeEmployee} from '../repository/employeeRepository.js'
+import {createNewEmployee, getAllEmployees, removeEmployee, editEmployee} from '../repository/employeeRepository.js'
 
 const createEmployee = async (req, res) => {
     try {
@@ -75,4 +75,21 @@ const deleteEmployee = async (req, res) => {
     }
 }
 
-export { createEmployee, getEmployees, deleteEmployee };
+const updateEmployee = async (req, res) => {
+    try {
+        let data = req.body;
+
+      let result=  await editEmployee(data);
+      return apiResponseSuccess(
+        {},
+        true,
+        200,
+        'Employee updated successfully',
+        res
+    )
+    } catch (error) {
+        return apiResponseErr(null, false, 400, error.message, res)
+    }
+}
+
+export { createEmployee, getEmployees, deleteEmployee, updateEmployee };

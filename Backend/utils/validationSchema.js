@@ -104,4 +104,9 @@ const createEmployeeSchema = [
         }),
 ]
 
-export { createAdminSchema, loginSchema, createEmployeeSchema };
+const updateEmployeeSchema = [
+    ...createEmployeeSchema,
+    body('employeeId').notEmpty().withMessage('Employee Id is required field'),
+]
+
+export { createAdminSchema, loginSchema, createEmployeeSchema, updateEmployeeSchema };
