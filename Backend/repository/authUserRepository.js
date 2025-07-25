@@ -1,4 +1,5 @@
 import { Admin } from '../schemas/adminSchema.js'
+import { Employee } from '../schemas/employeeSchema.js'
 
 const loginAdmin = async (data) => {
     try {
@@ -13,4 +14,17 @@ const loginAdmin = async (data) => {
     }
 }
 
-export { loginAdmin }
+const loginEmployee = async (data) => {
+    try {
+        const existEmployee = await Employee.findOne({ email: data.email })
+        if (existEmployee) {
+            return existEmployee
+        } else {
+            throw new Error("Employee doesn't exist")
+        }
+    } catch (error) {
+        throw error
+    }
+}
+
+export { loginAdmin, loginEmployee }
