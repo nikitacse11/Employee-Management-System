@@ -17,3 +17,22 @@ export const loginAdmin = async (data) => {
         return error.response
     }
 }
+
+// ----------------------loginUserAPI-----------------------------------------------
+
+export const loginUser = async (loginData) => {
+    try {
+        const response = await axios.post(
+            `http://localhost:8081/auth/login-employee`,
+            {
+                email: loginData.email,
+                password: loginData.password,
+            }
+        )
+        // console.log("response", response.data);
+        return response
+    } catch (error) {
+        // console.log("error",error)
+        return error.response
+    }
+}
