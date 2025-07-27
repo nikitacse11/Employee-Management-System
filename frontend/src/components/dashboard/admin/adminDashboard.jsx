@@ -1,4 +1,7 @@
 import './adminDashboard.css'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity'
+import LocalAtmIcon from '@mui/icons-material/LocalAtm'
+import LaptopMacIcon from '@mui/icons-material/LaptopMac'
 function AdminDashboard () {
     return (
         <>
@@ -9,13 +12,13 @@ function AdminDashboard () {
                             className="admin-portal"
                             style={{ backgroundColor: '#f0f9ff' }}
                         >
-                            {/* <PermIdentityIcon
+                            <PermIdentityIcon
                                 style={{
                                     width: '50px',
                                     height: '50px',
                                     color: '#74c1ed',
                                 }}
-                            /> */}
+                            />
                             <p style={{ color: '#6c6c6c' }}>No. of Employees</p>
                             <p
                                 className="d-flex justify-content-end mt-5"
@@ -30,13 +33,13 @@ function AdminDashboard () {
                             className="admin-portal"
                             style={{ backgroundColor: '#fef6fb' }}
                         >
-                            {/* <LaptopMacIcon
+                            <LaptopMacIcon
                                 style={{
                                     width: '50px',
                                     height: '50px',
                                     color: '#EE95C5',
                                 }}
-                            /> */}
+                            />
                             <p style={{ color: '#6c6c6c' }}>Working</p>
                             <p
                                 className="d-flex justify-content-end mt-5"
@@ -51,13 +54,13 @@ function AdminDashboard () {
                             className="admin-portal"
                             style={{ backgroundColor: '#fefbec' }}
                         >
-                            {/* <LocalAtmIcon
+                            <LocalAtmIcon
                                 style={{
                                     width: '50px',
                                     height: '50px',
                                     color: '#f6c762',
                                 }}
-                            /> */}
+                            />
                             <p style={{ color: '#6c6c6c', fontSize: '18px' }}>
                                 Salary
                             </p>
