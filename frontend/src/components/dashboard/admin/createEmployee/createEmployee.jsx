@@ -1,15 +1,38 @@
 import './createEmployee.css';
+import { useFormik } from 'formik'
+import { employeeSchema } from '../../../../schemas/employeeSchema'
 function CreateEmployee () {
+    const initialState = {
+        id: '',
+        name: '',
+        email: '',
+        phone: '',
+        department: '',
+        designation: '',
+        salary: '',
+        date_of_joining:'',
+    }
+
+    const formik = useFormik({
+        initialValues: initialState,
+        validationSchema: employeeSchema,
+        
+        onSubmit: (values, action) => {
+            console.log("Form values on submit:", values);
+            console.log(formik);
+            action.resetForm()
+        },
+    })
     return (
         <div className="createUser">
-            <form className="form">
+            <form className="form" onSubmit={formik.handleSubmit}>
                 <div className="modal-header mb-3 d-flex justify-content-between">
                     <h4 className="modal-title" id="exampleModalLabel">
                         Enter Details
                     </h4>
                 </div>
 
-                {/* <div className="modal-body">
+                <div className="modal-body">
                     <div className="form-floating mb-3">
                         <input
                             type="text"
@@ -37,7 +60,7 @@ function CreateEmployee () {
                         ) : null}
                     </div>
 
-                    <div className="form-floating mb-3">
+                      <div className="form-floating mb-3">
                         <input
                             type="email"
                             className={`form-control ${
@@ -62,7 +85,7 @@ function CreateEmployee () {
                         {formik.errors.email && formik.touched.email ? (
                             <p className="form_error">{formik.errors.email}</p>
                         ) : null}
-                    </div>
+                    </div>  
 
                     <div className="form-floating mb-3">
                         <input
@@ -207,18 +230,17 @@ function CreateEmployee () {
                                 {formik.errors.date_of_joining}
                             </p>
                         ) : null}
-                    </div>
+                    </div> 
 
                     <div className="form-floating mb-4 text-center">
                         <button
                             className="submit_btn"
                             type="submit"
-                            onClick={formik.handleSubmit}
                         >
                             Submit Data
                         </button>
                     </div>
-                </div> */}
+                </div>
             </form>
         </div>
     )

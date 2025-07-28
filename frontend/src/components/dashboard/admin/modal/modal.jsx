@@ -1,6 +1,7 @@
 import React from 'react'
 import './modal.css'
 import CreateEmployee from '../createEmployee/createEmployee'
+import { employeeSchema } from '../../../../schemas/employeeSchema'
 
 const Modal = ({ show, onClose, getData, editData }) => {
     if (!show) {

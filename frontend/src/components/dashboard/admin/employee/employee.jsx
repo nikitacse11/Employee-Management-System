@@ -1,20 +1,26 @@
 import Modal from '../modal/modal.jsx'
+import './employee.css'
+import { useState } from 'react'
 function Employees () {
+    const [showModal, setShowModal] = useState(false)
+    const openModal = () => {
+        setShowModal(true)
+    }
     return (
         <div className="container ps-5 pt-4">
-            {/* <div className="App">
+            <div className="App">
                 <Modal
                     show={showModal}
-                    onClose={closeModal}
-                    getData={getData}
-                    editData={editData}
+                    // onClose={closeModal}
+                    // getData={getData}
+                    // editData={editData}
                 >
                     <div className="container">
                         <h2>Modal Title</h2>
                         <p>This is the modal content.</p>
                     </div>
                 </Modal>
-                <DeleteModal
+                {/* <DeleteModal
                     show={showDeleteModal}
                     onClose={closeDeleteModal}
                     getData={getData}
@@ -24,13 +30,13 @@ function Employees () {
                         <h2>Modal Title</h2>
                         <p>This is the modal content.</p>
                     </div>
-                </DeleteModal>
-            </div> */}
+                </DeleteModal> */}
+            </div>
             <div className="employee_nav d-flex justify-content-between align-items-center py-3">
                 <h4>Employees List</h4>
                 <div className="nav_end">
                     <button
-                        // onClick={openModal}
+                        onClick={openModal}
                         className="p-2 employee_btn border rounded-3 text-white"
                     >
                         Add Employee
