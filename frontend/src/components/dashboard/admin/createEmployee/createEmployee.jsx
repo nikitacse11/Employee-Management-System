@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import { employeeSchema } from '../../../../schemas/employeeSchema'
 import { createEmployee } from '../../../../api/employeeApi'
 import { toast } from 'react-toastify'
-function CreateEmployee () {
+function CreateEmployee (props) {
     const initialState = {
         id: '',
         name: '',
@@ -40,6 +40,7 @@ function CreateEmployee () {
             await createNewEmployee(values)
             console.log("values", values)
             action.resetForm()
+            props.onClose()
         },
     })
     return (

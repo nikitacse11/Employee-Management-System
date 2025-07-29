@@ -6,12 +6,15 @@ function Employees () {
     const openModal = () => {
         setShowModal(true)
     }
+    const closeModal = () => {
+        setShowModal(false)
+    }
     return (
         <div className="container ps-5 pt-4">
             <div className="App">
                 <Modal
                     show={showModal}
-                    // onClose={closeModal}
+                    onClose={closeModal}
                     // getData={getData}
                     // editData={editData}
                 >
