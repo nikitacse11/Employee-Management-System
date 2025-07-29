@@ -1,6 +1,8 @@
 import './createEmployee.css';
 import { useFormik } from 'formik'
 import { employeeSchema } from '../../../../schemas/employeeSchema'
+import { createEmployee } from '../../../../api/employeeApi'
+import { toast } from 'react-toastify'
 function CreateEmployee () {
     const initialState = {
         id: '',
@@ -13,13 +15,30 @@ function CreateEmployee () {
         date_of_joining:'',
     }
 
+    const createNewEmployee = async (form_data) => {
+        const res = await createEmployee(form_data)
+        if (res && res.data.responseCode === 401) {
+            toast.error(res.data.errMessage);
+        }else if (res && res.status === 201) {
+            toast.success(res.data.resMessage)
+        } else if (res && res.status === 400) {
+            // console.log("error")
+            toast.error(res.data.errMessage)
+        } else {
+            toast.error('Something went wrong...')
+        }
+        return res
+    }
+
     const formik = useFormik({
         initialValues: initialState,
         validationSchema: employeeSchema,
         
-        onSubmit: (values, action) => {
+        onSubmit: async (values, action) => {
             console.log("Form values on submit:", values);
             console.log(formik);
+            await createNewEmployee(values)
+            console.log("values", values)
             action.resetForm()
         },
     })

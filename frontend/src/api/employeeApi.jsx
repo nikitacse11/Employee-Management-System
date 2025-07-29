@@ -20,15 +20,15 @@ export const getEmployees = async (page, limit,accessToken) => {
 
 // -----------------------------CreateData---------------------------------------
 
-export const createEmployee = async (form_data,accessToken) => {
+export const createEmployee = async (form_data) => {
     try {
-        const headers = {
-            'Authorization': `Bearer ${accessToken}`
-        };
+        // const headers = {
+        //     'Authorization': `Bearer ${accessToken}`
+        // };
         const response = await axios.post(
-            'http://localhost:8081/api/create-employee',
+            'http://localhost:8080/api/create-employee',
             {
-                userType: form_data.userType,
+                // userType: form_data.userType,
                 name: form_data.name,
                 email: form_data.email,
                 phone: form_data.phone,
@@ -36,7 +36,8 @@ export const createEmployee = async (form_data,accessToken) => {
                 department: form_data.department,
                 salary: form_data.salary,
                 date_of_joining: form_data.date_of_joining,
-            },{headers:headers}
+            }
+            // },{headers:headers}
         )
         // console.log(response);
         return response
