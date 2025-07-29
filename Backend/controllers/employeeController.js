@@ -44,7 +44,6 @@ const getEmployees = async (req, res) => {
             totalPages: totalPages,
             totalItems: totalEmployees,
         }
-        // console.log(result)
 
         return apiResponsePagination(
             existedEmployees,
