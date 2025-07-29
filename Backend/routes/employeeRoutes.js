@@ -8,9 +8,12 @@ import { userTypes } from '../utils/stringConstant.js'
 
 const router = Router()
 
-router
+// router
+//     .route('/create-employee')
+//     .post(createEmployeeSchema, validationHandler, authenticateToken([userTypes.ADMIN]), createEmployee)
+    router
     .route('/create-employee')
-    .post(createEmployeeSchema, validationHandler, authenticateToken([userTypes.ADMIN]), createEmployee)
+    .post(createEmployeeSchema, validationHandler, createEmployee)
 router.route('/all-employees').get(authenticateToken([userTypes.ADMIN]),getEmployees)
 router.route('/delete-employee').delete(authenticateToken([userTypes.ADMIN]),deleteEmployee)
 router.route('/edit-employee').put(updateEmployeeSchema,validationHandler,authenticateToken([userTypes.ADMIN]),updateEmployee)

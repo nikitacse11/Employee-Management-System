@@ -18,7 +18,7 @@ const schema = new Schema({
         type: String,
        required:true
     },
-    userType: { type: String, required: true },
+    // userType: { type: String, required: true },
 })
 
 export const Employee = mongoose.model('employees', schema)
