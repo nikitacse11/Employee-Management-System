@@ -16,7 +16,8 @@ const router = Router()
     .post(createEmployeeSchema, validationHandler, createEmployee)
 // router.route('/all-employees').get(authenticateToken([userTypes.ADMIN]),getEmployees)
 router.route('/all-employees').get(getEmployees)
-router.route('/delete-employee').delete(authenticateToken([userTypes.ADMIN]),deleteEmployee)
+// router.route('/delete-employee').delete(authenticateToken([userTypes.ADMIN]),deleteEmployee)
+router.route('/delete-employee').delete(deleteEmployee)
 router.route('/edit-employee').put(updateEmployeeSchema,validationHandler,authenticateToken([userTypes.ADMIN]),updateEmployee)
 
 export default router
