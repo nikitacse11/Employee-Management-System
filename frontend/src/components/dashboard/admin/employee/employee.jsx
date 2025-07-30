@@ -6,9 +6,13 @@ import del from '../../../../assets/images/delete.png'
 import edit from '../../../../assets/images/edit.png'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import DeleteModal from '../modal/deleteModal'
 function Employees() {
   const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleteData, setDeleteData] = useState(null)
   const [employees, setEmployees] = useState([]);
+
 
   useEffect(() => {
     getData();
@@ -20,6 +24,14 @@ function Employees() {
   const closeModal = () => {
     setShowModal(false);
   };
+  const closeDeleteModal = () => {
+        setShowDeleteModal(false)
+    }
+    const openDeleteModal = (_id) => {
+            setDeleteData(_id)
+            setShowDeleteModal(true)
+    }
+
   const getData = async () => {
     const res = await getEmployees();
     if (res && res.data.responseCode === 401) {
@@ -51,17 +63,17 @@ function Employees() {
             <p>This is the modal content.</p>
           </div>
         </Modal>
-        {/* <DeleteModal
+        <DeleteModal
                     show={showDeleteModal}
                     onClose={closeDeleteModal}
-                    getData={getData}
+                    // getData={getData}
                     deleteData={deleteData}
                 >
                     <div className="container">
                         <h2>Modal Title</h2>
                         <p>This is the modal content.</p>
                     </div>
-                </DeleteModal> */}
+                </DeleteModal>
       </div>
       <div className="employee_nav d-flex justify-content-between align-items-center py-3">
         <h4>Employees List</h4>
@@ -115,9 +127,9 @@ function Employees() {
                         src={del}
                         alt=""
                         className="p-2"
-                        // onClick={() => {
-                        //   openDeleteModal(item._id);
-                        // }}
+                        onClick={() => {
+                          openDeleteModal(item._id);
+                        }}
                       />
                     </td>
                   </tr>

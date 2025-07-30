@@ -47,14 +47,14 @@ export const createEmployee = async (form_data) => {
 
 //--------------------------------DeleteData------------------------------------------
 
-export const deleteEmployee = async (employee_id,accessToken) => {
+export const deleteEmployee = async (employee_id) => {
     // console.log("authID:", employee_id)
     try {
-        const headers = {
-            'Authorization': `Bearer ${accessToken}`
-        };
+        // const headers = {
+        //     'Authorization': `Bearer ${accessToken}`
+        // };
         const response = await axios.delete(
-            `http://localhost:8081/api/delete-employee?employeeId=${employee_id}`,{headers:headers}
+            `http://localhost:8080/api/delete-employee`
         )
         // console.log(response)
         return response
