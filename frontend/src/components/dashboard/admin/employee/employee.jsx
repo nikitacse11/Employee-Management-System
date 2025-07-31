@@ -2,17 +2,16 @@ import Modal from "../modal/modal.jsx";
 import "./employee.css";
 import { useState, useEffect } from "react";
 import { getEmployees } from "../../../../api/employeeApi";
-import del from '../../../../assets/images/delete.png'
-import edit from '../../../../assets/images/edit.png'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import DeleteModal from '../modal/deleteModal'
+import del from "../../../../assets/images/delete.png";
+import edit from "../../../../assets/images/edit.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import DeleteModal from "../modal/deleteModal";
 function Employees() {
   const [showModal, setShowModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [deleteData, setDeleteData] = useState(null)
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteData, setDeleteData] = useState(null);
   const [employees, setEmployees] = useState([]);
-
 
   useEffect(() => {
     getData();
@@ -25,12 +24,12 @@ function Employees() {
     setShowModal(false);
   };
   const closeDeleteModal = () => {
-        setShowDeleteModal(false)
-    }
-    const openDeleteModal = (_id) => {
-            setDeleteData(_id)
-            setShowDeleteModal(true)
-    }
+    setShowDeleteModal(false);
+  };
+  const openDeleteModal = (_id) => {
+    setDeleteData(_id);
+    setShowDeleteModal(true);
+  };
 
   const getData = async () => {
     const res = await getEmployees();
@@ -38,11 +37,11 @@ function Employees() {
       toast.error(res.data.errMessage);
     } else if (res && res.data.responseCode === 200) {
       setEmployees(res.data.data);
-    //   setPagination({
-    //     page: res.data.pagination.page,
-    //     totalPages: res.data.pagination.totalPages,
-    //     totalItems: res.data.pagination.totalItems,
-    //   });
+      //   setPagination({
+      //     page: res.data.pagination.page,
+      //     totalPages: res.data.pagination.totalPages,
+      //     totalItems: res.data.pagination.totalItems,
+      //   });
     } else if (res && res.data.responseCode === 400) {
       toast.error(res.data.errMessage);
     } else {
@@ -64,16 +63,16 @@ function Employees() {
           </div>
         </Modal>
         <DeleteModal
-                    show={showDeleteModal}
-                    onClose={closeDeleteModal}
-                    // getData={getData}
-                    deleteData={deleteData}
-                >
-                    <div className="container">
-                        <h2>Modal Title</h2>
-                        <p>This is the modal content.</p>
-                    </div>
-                </DeleteModal>
+          show={showDeleteModal}
+          onClose={closeDeleteModal}
+          // getData={getData}
+          deleteData={deleteData}
+        >
+          <div className="container">
+            <h2>Modal Title</h2>
+            <p>This is the modal content.</p>
+          </div>
+        </DeleteModal>
       </div>
       <div className="employee_nav d-flex justify-content-between align-items-center py-3">
         <h4>Employees List</h4>
