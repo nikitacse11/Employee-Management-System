@@ -1,6 +1,6 @@
-class userType{
-    ADMIN="Admin"
-    EMPLOYEE="Employee"
+class userType {
+  ADMIN = "Admin";
+  EMPLOYEE = "Employee";
 }
 
-export let userTypes=new userType();
+export let userTypes = new userType();
