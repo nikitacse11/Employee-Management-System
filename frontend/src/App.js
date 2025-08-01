@@ -4,6 +4,8 @@ import AdminDasboard from "./components/dashboard/admin/adminDashboard.jsx";
 import Employees from "./components/dashboard/admin/employee/employee.jsx";
 import Layout from "./components/common/layout/layout.jsx";
 import { ToastContainer } from "react-toastify";
+import EmployeeDashboard from "./components/dashboard/employee/employeeDashboard.jsx";
+import Todo from "./components/dashboard/employee/todo/todo.jsx";
 function App() {
   return (
     <BrowserRouter>
@@ -38,6 +40,22 @@ function App() {
             </Layout>
           }
         />
+        <Route
+          path="/todo"
+          element={
+            <Layout>
+              <Todo />
+            </Layout>
+          }
+        ></Route>
+        <Route
+          path="/employee-dashboard"
+          element={
+              <Layout>
+                <EmployeeDashboard />
+              </Layout>
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
